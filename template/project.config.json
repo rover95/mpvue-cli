@@ -8,10 +8,10 @@
 		"newFeature": true,
 		"nodeModules": false
 	},
-	"miniprogramRoot": "./dist/",
+	"miniprogramRoot": "dist/",
 	"compileType": "miniprogram",
-	"appid": "",
-	"projectname": "",
+	"appid": "wx3687720e1fe73167",
+	"projectname": "%E6%99%BA%E6%85%A7%E5%B0%8F%E5%8C%BA",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -21,13 +21,23 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "wc",
+					"pathName": "pages/smartToilet"
+				}
+			]
 		}
 	}
 }

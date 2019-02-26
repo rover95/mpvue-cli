@@ -1,12 +1,11 @@
 import Flyio from './interceptors'
-import API from './apiUrl'
 import Config from './config'
 // 异常情况的错误处理
 const errorFunction = (reqConfig, err) => {
   // 如果有异常需要提示
   if (!reqConfig.errorAction && reqConfig.isErrorDefaultTip) {
     setTimeout(() => {
-      Config.resError.tipShow()
+      Config.resError.tipShow(err)
     }, 0)
   }
   throw (err)
@@ -17,8 +16,10 @@ let loadingTimer = [] // loading的定时器
 
 // 接口请求封装函数
 const handleRequest = (url = '', data = {}) => {
-  let _url = API[url] || ''
+  // let _url = API[url] || ''
+  let _url = url;
   return (flyConfig = {}, defaultTipConfig = {}) => {
+
     let flyio = Flyio.request(_url, data, {
       ...Config.flyConfig,
       ...flyConfig
@@ -27,7 +28,7 @@ const handleRequest = (url = '', data = {}) => {
       ...Config.reqConfig,
       ...defaultTipConfig
     }
-
+    
     // 开启loading
     clearTimeout(loadingTimer) // 多个接口时需要清除上一个loading
     loadingTimer = setTimeout(() => {

@@ -31,14 +31,14 @@ const actions = {
     return Vue.iBox.http('globalUrl.getProvince', params)({
       method: 'get'
     }).then(res => {
-      console.log('vuex中接口返回的提示：' + res.data.provinceShort)
+      console.log('vuex中接口返回的提示：' + res)
       return res
     })
   }
 }
 
 export default {
-  namespaced: true,
+  // namespaced: true,
   state,
   mutations,
   actions

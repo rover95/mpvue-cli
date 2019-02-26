@@ -10,7 +10,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const entry = MpvueEntry.getEntry('./src/app.json')
+const entry = MpvueEntry.getEntry('./src/pages.js')
 
 module.exports = {
   entry,
@@ -33,24 +33,20 @@ module.exports = {
     mainFields: ['browser', 'module', 'main']
   },
   module: {
-    rules: [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: resolve('src'),
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+    rules: [
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: resolve('src'),
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',
         options: vueLoaderConfig
-      },
-      {
-        test: /\.vue$/,
-        loader: 'mpvue-config-loader',
-        exclude: [resolve('src/components')]
       },
       {
         test: /\.js$/,

@@ -1,0 +1,17 @@
+<view class='add-image-container'>
+  <block wx:for="{{imgArr}}" wx:for-item="image" wx:key="k">
+    <view class='image-delete-container' data-index="{{index}}">
+      <view wx:if="{{index >= 4}}" style='margin-top:20rpx;'/>
+      
+      <video wx:if="{{image.isVideo}}"  class='image-put' src="{{image.path}}" data-index="{{index}}" controls></video>
+      <image wx:else class='image-put' src="{{image.path}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImage"/>
+      <view class='delete-container'>
+        <view class='delete-btn' data-index="{{index}}" bindtap="deleteImg">×</view>
+      </view>
+    </view>
+  </block>
+  <view class="uploader-container" bindtap="setCamIma" style='margin-top:20rpx;'>
+    <view class='uploader-btn'/>
+  </view>
+  
+</view>

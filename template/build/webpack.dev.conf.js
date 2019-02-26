@@ -17,7 +17,9 @@ module.exports = merge(baseWebpackConfig, {
       extract: true
     })
   },
-  devtool: config.dev.sourceMap ? '#source-map' : false,
+  // cheap-module-eval-source-map is faster for development
+  // devtool: '#cheap-module-eval-source-map',
+  devtool: '#source-map',
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('[name].js'),

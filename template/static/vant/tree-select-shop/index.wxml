@@ -1,0 +1,48 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view
+  class="van-tree-select"
+  style="height: 100%"
+>
+  <scroll-view scroll-y class="van-tree-select__nav">
+    <view
+      wx:for="{{ items }}"
+      wx:key="index"
+      class="van-ellipsis main-item-class {{ utils.bem('tree-select__nitem', { active: mainActiveIndex === index, disabled: item.disabled }) }} {{ mainActiveIndex === index ? 'main-active-class' : '' }} {{ item.disabled ? 'main-disabled-class' : '' }}"
+      data-index="{{ index }}"
+      bind:tap="onClickNav"
+    >
+      {{ item.text }}
+    </view>
+  </scroll-view>
+  <scroll-view
+    scroll-y
+    class="van-tree-select__content"
+    style="height: 100%"
+  >
+    <navigator url="/pages/shop/goods"
+      wx:for="{{ subItems }}"
+      wx:key="id"
+      class="van-ellipsis van-hairline--bottom content-item-class {{ utils.bem('tree-select__item', { active: activeId === item.id, disabled: item.disabled }) }} {{ activeId === item.id ? 'content-active-class' : '' }} {{ item.disabled ? 'content-disabled-class' : '' }}"
+      data-item="{{ item }}"
+      bind:tap="onSelectItem"
+    >
+      <view class="shop-cell">
+        <view class="flex flex-grow">
+          <image src="{{item.img || 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550727109917&di=e74f33091c5dbc9ed7f547090f193fde&imgtype=0&src=http%3A%2F%2Flife.southmoney.com%2Ftuwen%2FUploadFiles_6871%2F201808%2F20180808165814596.jpg'}}"
+              alt="" class="shop-img" />
+          <view class="flex flex-v flex-pack-justify shop-info" style="width:100%">
+            <view class="shop-name">{{ item.text }}</view>
+            <view class="fs20 c-9 fw-300">营业时间：{{item.openTime || '8:00 ~ 22:00'}}</view>
+            <view class="flex flex-pack-justify">
+              <van-rate value="{{ item.rate || 4.5 }}" size="{{12}}" />
+              <view wx:if="{{item.distance}}">{{''+item.distance+'m'}}</view>
+              <view wx:else>{{'<'}}1000m</view>
+            </view>
+          </view>
+        </view>
+        <van-icon name="arrow" size="16px" color="#ccc"/>
+      </view>
+    </navigator>
+  </scroll-view>
+</view>

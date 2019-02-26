@@ -1,19 +1,41 @@
 {
-  "pages": [
-    "pages/index",
-    "pages/counter",
-    {
-      "path": "packageA/logs",
-      "subPackage": true,
-      "config": {
-        "navigationBarTitleText": "查看启动日志"
-      }
-    }
-  ],
+  "pages": [],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "智慧小区",
     "navigationBarTextStyle": "black"
+  },
+  "navigateToMiniProgramAppIdList": [
+    
+  ],
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "color": "#8a8a8a",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "iconPath": "static/img/icon/icon_home.png",
+        "selectedIconPath": "static/img/icon/icon_home_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/menu",
+        "iconPath": "static/img/icon/icon_menu.png",
+        "selectedIconPath": "static/img/icon/icon_menu_active.png",
+        "text": "菜单"
+      },
+      {
+        "pagePath": "pages/person",
+        "iconPath": "static/img/icon/icon_person.png",
+        "selectedIconPath": "static/img/icon/icon_person_active.png",
+        "text": "个人中心"
+      }
+      
+    ]
+  },
+  "networkTimeout": {
+    "request": 25000
   }
 }

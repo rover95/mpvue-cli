@@ -1,0 +1,32 @@
+@import '../common/index.wxss';.van-tree-select{position:relative;font-size:28rpx;-webkit-user-select:none;user-select:none}.van-tree-select__nav{position:absolute;top:0;bottom:0;left:0;width:25%;min-width:160rpx;background-color:#ddd;font-size: 30rpx;}.van-tree-select__nitem{position:relative;padding:0 9px 0 15px;line-height:44px;border-bottom: 1px solid #ccc}.van-tree-select__nitem--active::after{position:absolute;top:0;bottom:0;left:0;width:3.6px;background-color:#1af;content:''}.van-tree-select__nitem--active{font-weight:700;color:#1af;background-color:#fff}.van-tree-select__nitem--disabled{color:#999}.van-tree-select__content{width:75%;padding-left:30rpx;margin-left:25%;background-color:#fff;box-sizing:border-box;padding-bottom: 16rpx;padding-top: 16rpx;}.van-tree-select__item{position:relative;font-weight:700;line-height:44px;}.van-tree-select__item--active{color:#1af}.van-tree-select__item--disabled{color:#999}.van-tree-select__selected{position:absolute;top:0;right:15px;bottom:0;height:24px;margin:auto 0;line-height:24px}
+.shop-cell{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 16rpx 0;
+  padding-right: 16rpx;
+  line-height: 1;
+}
+.shop-img{
+  flex-shrink: 0;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 3px;
+}
+.shop-name{
+  line-height: 1.5;
+  color: #333;
+  font-weight: 700;
+  font-size: 16px;
+}
+.shop-info{
+  line-height: 1.5;
+  font-size: 24rpx;
+  font-weight: normal;
+  color: #999;
+  width: 100%;
+  flex-grow: 1;
+  padding-right: 20rpx;
+  padding-left: 16rpx;
+}

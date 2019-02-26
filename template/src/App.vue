@@ -1,18 +1,21 @@
 <script>
 export default {
-  created () {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  created() {
+    // // 调用API从本地缓存中获取数据
+    // const logs = wx.getStorageSync("logs") || [];
+    // logs.unshift(Date.now());
+    // wx.setStorageSync("logs", logs);
 
-    // eslint-disable-next-line
-    console.log('app created and cache logs by setStorageSync')
+    // // eslint-disable-next-line
+    // console.log("app created and cache logs by setStorageSync");
   }
-}
+};
 </script>
 
 <style>
+@import './utils/style/g-style.wxss';
+
+/* @import '~mpvue-zanui/src/assets/style/zanui.wxss'; */
 /* flex布局兼容性写法
 flex：定义布局为盒模型
 flex-v：盒模型垂直布局
@@ -51,6 +54,9 @@ flex-text：按钮文本居中
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+.flex-grow{
+  flex-grow: 1;
 }
 
 .flex-align-center {
@@ -143,6 +149,71 @@ flex-text：按钮文本居中
 
 .tR {
   text-align: right;
+}
+
+/* 间距 */
+.mt10 {
+  margin-top: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.mr30 {
+  margin-right: 30px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.ml30 {
+  margin-left: 30px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mr40 {
+  margin-right: 40px;
+}
+
+.mb40 {
+  margin-bottom: 40px;
+}
+
+.ml40 {
+  margin-left: 40px;
 }
 
 /* 清楚小程序按钮样式 */

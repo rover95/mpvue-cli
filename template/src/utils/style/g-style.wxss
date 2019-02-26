@@ -1,0 +1,110 @@
+.page{
+  background-color: #eee;
+  padding-top: 1rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 1rpx;
+}
+/* vant 样式 reset */
+.van-picker__cancel{
+  color: #999!important; 
+}
+
+/* 大卡片 */
+.card-body {
+  position: relative;
+  width: 686rpx;
+  background-color: white;
+  margin: 32rpx auto;
+  border-radius: 15rpx;
+  /* border: 1rpx solid gray; */
+  box-shadow: 0 6rpx 30rpx rgba(218, 223, 235, 0.65);
+  overflow: hidden;
+}
+
+.card-head {
+  text-align: center;
+  padding: 32rpx 0;
+  border-bottom: 2rpx solid #f2f4f7;
+}
+
+.card-title {
+  height: 44rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.card-subheading {
+  height: 34rpx;
+  font-size: 24rpx;
+  opacity: 0.45;
+}
+
+.card-content {
+  padding: 48rpx;
+}
+/* 大卡片 -- END */
+
+
+/* 跳转按钮 */
+.navigate-box {
+  text-align: center;
+}
+.navigate-btn {
+    width: 686rpx;
+    height: 100rpx;
+    margin: 80rpx auto;
+    border-radius: 12rpx;
+    line-height: 100rpx;
+    color: white;
+    background: linear-gradient(to right, #FF4F00, #ED0000);
+    box-shadow: 0rpx 6rpx 30rpx 0rpx #FF6B64;
+  }
+
+.fs20{
+  font-size: 20rpx;
+}
+.fs24{
+  font-size: 24rpx;
+}
+.fs28{
+  font-size: 28rpx;
+}
+.fs36{
+  font-size: 36rpx;
+}
+.fc-7{
+  color:#777;
+}
+.c-9{
+  color: #999;
+}
+.c-1af{
+  color: #1af;
+}
+.c-fc1{
+  color: #fc1
+}
+.c-1d3{
+  color: #1d3
+}
+.c-f33{
+  color: #f33
+}
+.fw-500{
+  font-weight: 500;
+}
+.fw-300{
+  font-weight: 300;
+}
+
+.t-right{
+  text-align: right!important;
+}
+.t-left{
+  text-align: left!important;
+}
+.t-center{
+  text-align: center!important;
+}
