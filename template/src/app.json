@@ -2,7 +2,7 @@
   "pages": [],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "white",
     "navigationBarTitleText": "智慧小区",
     "navigationBarTextStyle": "black"
   },

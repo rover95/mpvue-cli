@@ -50,7 +50,7 @@ module.exports = [
     config: {
       navigationBarBackgroundColor: "#1af",
       navigationBarTitleText: "个人中心",
-      navigationBarTextStyle: "light",
+      navigationBarTextStyle: "white",
       usingComponents: importVant([
         "icon",
         "cell-group",
