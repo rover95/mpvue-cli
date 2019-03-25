@@ -3,7 +3,6 @@ import { link } from '../mixins/link';
 import { button } from '../mixins/button';
 import { openType } from '../mixins/open-type';
 VantComponent({
-  classes: ['icon-class', 'text-class'],
   mixins: [link, button, openType],
   props: {
     text: String,

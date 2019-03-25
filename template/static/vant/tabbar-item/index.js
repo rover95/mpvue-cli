@@ -22,14 +22,10 @@ VantComponent({
 
       this.$emit('click');
     },
-    setActive: function setActive(_ref) {
-      var active = _ref.active,
-          color = _ref.color;
-
+    setActive: function setActive(active) {
       if (this.data.active !== active) {
         this.set({
-          active: active,
-          color: color
+          active: active
         });
       }
     }

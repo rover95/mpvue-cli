@@ -6,10 +6,9 @@ VantComponent({
   field: true,
   classes: ['input-class', 'plus-class', 'minus-class'],
   props: {
-    value: null,
+    value: Number,
     integer: Boolean,
     disabled: Boolean,
-    asyncChange: Boolean,
     disableInput: Boolean,
     min: {
       type: null,
@@ -34,11 +33,9 @@ VantComponent({
   },
   watch: {
     value: function value(_value) {
-      if (_value !== '') {
-        this.set({
-          value: this.range(_value)
-        });
-      }
+      this.set({
+        value: this.range(_value)
+      });
     }
   },
   data: {
@@ -90,7 +87,7 @@ VantComponent({
     },
     triggerInput: function triggerInput(value) {
       this.set({
-        value: this.data.asyncChange ? this.data.value : value
+        value: value
       });
       this.$emit('change', value);
     }

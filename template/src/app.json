@@ -2,29 +2,32 @@
   "pages": [],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "white",
-    "navigationBarTitleText": "智慧小区",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智慧app",
     "navigationBarTextStyle": "black"
   },
   "navigateToMiniProgramAppIdList": [
-    
+    "wx3687720e1fe73167",
+    "wxbb8fd571693de070",
+    "wx85295206a184f978",
+    "wxf52767f85e252bda"
   ],
   "tabBar": {
     "backgroundColor": "#FFFFFF",
-    "color": "#8a8a8a",
+    "color": "#555555",
     "selectedColor": "#000000",
     "list": [
       {
         "pagePath": "pages/index",
-        "iconPath": "static/img/icon/icon_home.png",
-        "selectedIconPath": "static/img/icon/icon_home_active.png",
-        "text": "首页"
+        "iconPath": "static/img/icon/icon_ybp.png",
+        "selectedIconPath": "static/img/icon/icon_ybp_active.png",
+        "text": "仪表盘"
       },
       {
         "pagePath": "pages/menu",
         "iconPath": "static/img/icon/icon_menu.png",
         "selectedIconPath": "static/img/icon/icon_menu_active.png",
-        "text": "菜单"
+        "text": "监测专题"
       },
       {
         "pagePath": "pages/person",
@@ -32,7 +35,6 @@
         "selectedIconPath": "static/img/icon/icon_person_active.png",
         "text": "个人中心"
       }
-      
     ]
   },
   "networkTimeout": {

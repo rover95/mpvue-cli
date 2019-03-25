@@ -1,41 +1,46 @@
 <template>
   <div style="padding-bottom:100rpx">
-    <!-- 循环cell -->
+    <!-- 循环行 -->
+    <div v-for="(row,idxRow) in menuData" :key="idxRow">
+      <div class="t-row">
+        {{row.rowName}}
+      </div>
+      <!-- 循环cell -->
       <div class="menu-box">
-        <div v-for="(cell, idxCell) in menuData[0].cells" :key="idxCell" style="margin-top:34rpx" class="cell">
+        <div v-for="(cell, idxCell) in row.cells" :key="idxCell">
           <a v-if="cell.url" :href="cell.url">
-            <menuCard  :isVoid="cell.isVoid || false" :imgPath="cell.imgPath" :bgcolor="cell.bgcolor" :title="cell.name"></menuCard>
+            <menuCard  :isVoid="cell.isVoid || false" :imgPath="cell.imgPath" :title="cell.name"></menuCard>
           </a>
           <div v-else style="position: relative">
             <div class="cover" v-if="!cell.isVoid"></div>
             <menuCard  :isVoid="cell.isVoid || false" :imgPath="cell.imgPath" :title="cell.name"></menuCard>
-          </div> 
-          
+          </div>
         </div>
 
-        <div style="margin-top:34rpx" class="cell" @click="addMenu">
-          <menuCard  :isVoid="addBtn.isVoid || false" :imgPath="addBtn.imgPath" :bgcolor="addBtn.bgcolor" :title="addBtn.name"></menuCard>
-        </div>
+        
 
       </div>
+    </div>
 
-      <!-- 菜单选择弹出层 -->
-      <van-popup :show="pickerShow" @close="onClose" position="bottom" :overlay="true">
-        <van-checkbox-group :value="result" @change="onChange">
-          <van-cell-group >
-            <van-cell
-              v-for="(item,index) in list"
-              :key="index"
-              :title="item"
-              clickable
-              :data-name="item"
-            >
-              <van-checkbox :class="'checkboxes-'+ item" :name="item" />
-            </van-cell>
-          </van-cell-group>
-        </van-checkbox-group>
-      </van-popup>
-      
+    <!-- 上报问题 -->
+    <div class="t-row">
+      便民服务
+    </div>
+    <div class="menu-box">
+      <div>
+        <button open-type="getUserInfo" @getuserinfo="getUserInfo" @click="onClickUserInfo">
+          <menuCard imgPath="/static/img/icon_menu/icon_wh.png" title="上报问题"></menuCard>
+        </button>
+      </div>
+      <div>
+        <button @click="goInfoPage">
+          <menuCard imgPath="/static/img/icon_menu/icon_pl.png" title="我的问题"></menuCard>
+        </button>
+      </div>
+      <div>
+        <menuCard :isVoid="true"></menuCard>
+      </div>
+    </div>
     
   </div>
 </template>
@@ -48,79 +53,215 @@ import Vue from 'vue'
 export default {
   data() {
     return {
-      list: ['a', 'b', 'c'],
-      result: ['a', 'b'],
-      pickerShow: false,
       menuData:[
         {
-          // rowName:'菜单行',
+          rowName:'生态环境',
           cells:[
             {
-              url:'./comingSoon',
-              name: '人员定位',
-              bgcolor:'#cf1',
-              imgPath:'/static/img/icon_menu/icon_dw.png'
+              url:null,
+              name: '自然保护',
+              imgPath:'/static/img/icon_menu/icon_sy.png'
             },
             {
-              url:'./comingSoon',
-              name: '我的小区',
-              bgcolor:'#f16',
-              imgPath:'/static/img/icon_menu/icon_xq.png'
+              url:'./ecotope/airQuality',
+              name: '空气质量',
+              imgPath:'/static/img/icon_menu/icon_kq.png'
             },
             {
-              url:'./comingSoon',
-              name: '房产管理',
-              // isVoid:true,
-              bgcolor:'#95f',
-              imgPath:'/static/img/icon_menu/icon_fc.png'
-            },
-            {
-              url:'./comingSoon',
-              name: '账号关联',
-              bgcolor:'#d7c',
-              imgPath:'/static/img/icon_menu/icon_gl.png'
-            },
-            {
-              url:'./comingSoon',
-              name: '有线电视',
-              bgcolor:'#19d',
-              imgPath:'/static/img/icon_menu/icon_ds.png'
-            },
-            {
-              url:'./comingSoon',
-              name: '车位管理',
-              // isVoid:true,
-              bgcolor:'#d72',
-              imgPath:'/static/img/icon_menu/icon_cw.png'
+              url:'./ecotope/waterQuality',
+              name: '水质质量',
+              imgPath:'/static/img/icon_menu/icon_sd.png'
             },
           ]
         },
-      ],
-      addBtn:{
-        url:'./comingSoon',
-        name: '',
-        bgcolor:'#eee',
-        imgPath:'/static/img/icon_menu/icon_add.png'
-      },
+        {
+          rowName:'社会治理',
+          cells:[
+            {
+              url:'./social/cityManagement',
+              name: '数字城管',
+              imgPath:'/static/img/icon_menu/icon_cg.png'
+            },
+            {
+              url:null,
+              name: '危货监测',
+              imgPath:'/static/img/icon_menu/icon_wh.png'
+            },
+            {
+              url:'./social/smartSite',
+              name: '智慧工地',
+              imgPath:'/static/img/icon_menu/icon_gd.png'
+            },
+          ]
+        },
+        {
+          rowName:'民生事业',
+          cells:[
+            {
+              url:'./livelihood/publicSentiment',
+              name: '民情反馈',
+              imgPath:'/static/img/icon_menu/icon_person.png'
+            },
+            {
+              url:null,
+              name: '政府扶持',
+              imgPath:'/static/img/icon_menu/icon_zf.png'
+            },
+            {
+              url:'./livelihood/smartToilet',
+              name: '智慧公厕',
+              imgPath:'/static/img/icon_menu/icon_gc.png'
+            },
+          ]
+        },
+        {
+          rowName:'产业经济',
+          cells:[
+            {
+              url:null,
+              name: '企业统计',
+              imgPath:'/static/img/icon_menu/icon_qy.png'
+            },
+            {
+              url:null,
+              name: '经济指标',
+              imgPath:'/static/img/icon_menu/icon_q.png'
+            },
+            {
+              isVoid:true
+            }
+          ]
+        },
+        // {
+        //   rowName:'便民服务',
+        //   cells:[
+        //     {
+        //       url:'./workflow/templateList',
+        //       name: '问题上报',
+        //       imgPath:'/static/img/icon_menu/icon_wh.png'
+        //     },
+        //     {
+        //       isVoid:true
+        //     },
+        //     {
+        //       isVoid:true
+        //     }
+        //   ]
+        // }
+      ]
     }
   },
   created() {
-    this.renderMenu = this.menuData
+    return {
+
+    }
   },
   components: {
     menuCard
   },
   methods: {
-    onClose() {
-      this.pickerShow = false;
-    },
-    addMenu(e){
-      console.log(e);
-      this.pickerShow = true;
-    },
-    onChange(event) {
+    //跳转评论页
+    goInfoPage(){
+      let openid = wx.getStorageSync('openid');
+      let workflowUserInfo = wx.getStorageSync('workflowUserInfo');
+      if(workflowUserInfo){
+        let pageUser = workflowUserInfo.auth?'adminUser':'ordinaryUser';
+        wx.navigateTo({
+          url:`/pages/workflow/list?pageUser=${pageUser}`
+        })
+      }else{
+        if(openid){
+          this.userLogin(openid)
+        }else{
+          this.getOpenId();
+        }
+      }
       
-      this.result = event.mp.detail
+    },
+    // 获取openid
+    getOpenId(){
+      wx.login({
+        success:(res)=> {
+          if (res.code) {
+            console.log(res.code);
+            wx.request({
+              url: API.getOpenId.replace('{code}',res.code),
+              success:res=>{
+                console.log(res);
+                wx.setStorageSync('openid', res.data.openid);
+                this.userLogin(res.data.openid);
+                
+              }
+            })
+          } else {
+            console.log('微信用户验证失败' + res.errMsg)
+          }
+        }
+      })
+    },
+    //用户登录
+    userLogin(openId){
+      let data = {username:openId,password:'000000'}
+      Vue.iBox
+      .http(API.workflowLogin,data)({
+        method: "post"
+      })
+      .then(res => {
+        console.log(res);
+          if(res.authorized){
+            let Authorization=null;
+            // let encodeBasic = `Basic ${btoa(encodeURIComponent(`${data.username}:${data.password}`))}`;
+            let encodeBasic = 'Basic '+ Buffer(`${data.username}:${data.password}`).toString('base64');
+            console.log(encodeBasic)
+            wx.setStorageSync('workflowUserInfo',{
+              auth:false,
+              username: data.username,
+              Authorization: encodeBasic
+            })
+            this.goInfoPage();
+          }else{
+            wx.showToast({
+              title: '用户信息获取失败',
+              icon: 'none',
+            })
+          }
+      }).catch(err=>{
+        console.log(err);
+        wx.showToast({
+          title: '用户信息获取失败',
+          icon: 'none',
+        })
+      });
+    },
+    //获取用户信息
+    getUserInfo(e){
+      console.log(e);
+      let storageUserInfo = wx.getStorageSync('wxUserInfo');
+      // if(storageUserInfo){
+      //   return
+      // }
+      let userInfo = e.mp.detail.userInfo;
+      if(userInfo){
+        wx.setStorageSync('wxUserInfo',userInfo);
+        wx.navigateTo({
+          url:'/pages/workflow/templateList'
+        })
+      }else{
+         wx.showToast({
+            title: '授权失败',
+            icon: 'none',
+          })
+      }
+      
+    },
+    //如果有本地用户数据先跳转了再说
+    onClickUserInfo(){
+      // let userInfo = wx.getStorageSync('wxUserInfo');
+      // if(userInfo){
+      //   wx.navigateTo({
+      //     url:'/pages/workflow/templateList'
+      //   })
+      // }
     },
   }
 }
@@ -135,17 +276,11 @@ export default {
   color rgba(0, 0, 0, 0.45)
 }
 .menu-box{
+  
   display flex
-  // justify-content space-between
-  flex-wrap wrap
+  justify-content space-between
   align-items center
-  padding 0 20rpx
-  .cell{
-    display flex
-    justify-content center
-    width 33.333%
-    box-sizing border-box
-  }
+  padding 0 34rpx
   .cover{
     position absolute
     top 0
@@ -157,5 +292,7 @@ export default {
     z-index 9
   }
 }
-
+.menu-cell{
+  margin 0 34rpx
+}
 </style>

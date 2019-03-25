@@ -5,24 +5,18 @@ VantComponent({
     type: 'ancestor'
   },
   props: {
-    dot: Boolean,
-    info: null,
     title: String,
-    disabled: Boolean,
-    titleStyle: String
+    disabled: Boolean
   },
   data: {
-    width: null,
     inited: false,
     active: false,
-    animated: false
+    animated: false,
+    width: null
   },
   watch: {
     title: 'update',
-    disabled: 'update',
-    dot: 'update',
-    info: 'update',
-    titleStyle: 'update'
+    disabled: 'update'
   },
   methods: {
     update: function update() {

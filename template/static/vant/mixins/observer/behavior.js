@@ -1,10 +1,3 @@
-function setAsync(context, data) {
-  return new Promise(function (resolve) {
-    context.setData(data, resolve);
-  });
-}
-
-;
 export var behavior = Behavior({
   created: function created() {
     var _this = this;
@@ -38,25 +31,13 @@ export var behavior = Behavior({
   methods: {
     // set data and set computed data
     set: function set(data, callback) {
-      var _this2 = this;
-
-      var stack = [];
-
       if (data) {
-        stack.push(setAsync(this, data));
+        this.setData(data, callback);
       }
 
       if (this.calcComputed) {
-        stack.push(setAsync(this, this.calcComputed()));
+        this.setData(this.calcComputed());
       }
-
-      return Promise.all(stack).then(function (res) {
-        if (callback && typeof callback === 'function') {
-          callback.call(_this2);
-        }
-
-        return res;
-      });
     }
   }
 });

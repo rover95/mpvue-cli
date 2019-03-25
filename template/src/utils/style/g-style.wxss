@@ -80,18 +80,6 @@
 .c-9{
   color: #999;
 }
-.c-1af{
-  color: #1af;
-}
-.c-fc1{
-  color: #fc1
-}
-.c-1d3{
-  color: #1d3
-}
-.c-f33{
-  color: #f33
-}
 .fw-500{
   font-weight: 500;
 }

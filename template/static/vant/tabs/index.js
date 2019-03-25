@@ -19,14 +19,7 @@ VantComponent({
   },
   props: {
     color: String,
-    sticky: Boolean,
-    animated: Boolean,
-    swipeable: Boolean,
     lineWidth: {
-      type: Number,
-      value: -1
-    },
-    lineHeight: {
       type: Number,
       value: -1
     },
@@ -54,10 +47,13 @@ VantComponent({
       type: Number,
       value: 4
     },
+    animated: Boolean,
+    sticky: Boolean,
     offsetTop: {
       type: Number,
       value: 0
     },
+    swipeable: Boolean,
     scrollTop: {
       type: Number,
       value: 0
@@ -80,7 +76,6 @@ VantComponent({
     },
     color: 'setLine',
     lineWidth: 'setLine',
-    lineHeight: 'setLine',
     active: 'setActiveTab',
     animated: 'setTrack',
     scrollTop: 'onScroll',
@@ -90,12 +85,9 @@ VantComponent({
     this.child = [];
   },
   mounted: function mounted() {
-    this.setLine(true);
+    this.setLine();
     this.setTrack();
     this.scrollIntoView();
-  },
-  destroyed: function destroyed() {
-    wx.createIntersectionObserver(this).disconnect();
   },
   methods: {
     updateTabs: function updateTabs(tabs) {
@@ -131,7 +123,7 @@ VantComponent({
         this.setActiveTab();
       }
     },
-    setLine: function setLine(skipTransition) {
+    setLine: function setLine() {
       var _this = this;
 
       if (this.data.type !== 'line') {
@@ -142,20 +134,17 @@ VantComponent({
           color = _this$data.color,
           active = _this$data.active,
           duration = _this$data.duration,
-          lineWidth = _this$data.lineWidth,
-          lineHeight = _this$data.lineHeight;
+          lineWidth = _this$data.lineWidth;
       this.getRect('.van-tab', true).then(function (rects) {
         var rect = rects[active];
         var width = lineWidth !== -1 ? lineWidth : rect.width / 2;
-        var height = lineHeight !== -1 ? "height: " + lineHeight + "px;" : '';
         var left = rects.slice(0, active).reduce(function (prev, curr) {
           return prev + curr.width;
         }, 0);
         left += (rect.width - width) / 2;
-        var transition = skipTransition ? '' : "transition-duration: " + duration + "s; -webkit-transition-duration: " + duration + "s;";
 
         _this.set({
-          lineStyle: "\n            " + height + "\n            width: " + width + "px;\n            background-color: " + color + ";\n            -webkit-transform: translateX(" + left + "px);\n            transform: translateX(" + left + "px);\n            " + transition + "\n          "
+          lineStyle: "\n            width: " + width + "px;\n            background-color: " + color + ";\n            -webkit-transform: translateX(" + left + "px);\n            -webkit-transition-duration: " + duration + "s;\n            transform: translateX(" + left + "px);\n            transition-duration: " + duration + "s;\n          "
         });
       });
     },
@@ -171,7 +160,7 @@ VantComponent({
         var width = rect.width;
 
         _this2.set({
-          trackStyle: "\n            width: " + width * _this2.child.length + "px;\n            left: " + -1 * active * width + "px;\n            transition: left " + duration + "s;\n            display: flex;\n          "
+          trackStyle: "\n            width: " + width * _this2.child.length + "px;\n            transform: translateX(" + -1 * active * width + "px);\n            transition-duration: " + duration + "s;\n          "
         });
 
         _this2.setTabsProps({

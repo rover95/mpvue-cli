@@ -1,8 +1,7 @@
 import { VantComponent } from '../common/component';
-import { button } from '../mixins/button';
 import { openType } from '../mixins/open-type';
 VantComponent({
-  mixins: [button, openType],
+  mixins: [openType],
   props: {
     show: Boolean,
     title: String,
@@ -15,7 +14,7 @@ VantComponent({
     confirmButtonOpenType: String,
     zIndex: {
       type: Number,
-      value: 2000
+      value: 100
     },
     confirmButtonText: {
       type: String,

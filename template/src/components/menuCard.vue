@@ -1,9 +1,7 @@
 <template>
   <div>
     <div v-if="!isVoid" class="cell">
-      <div class="img-box" :style="'background-color:'+bgcolor">
-        <img :src="imgPath" alt="">
-      </div>
+      <img :src="imgPath" alt="">
       <p>{{title}}</p>
     </div>
     <div v-else class="cell voidBox"></div>
@@ -17,7 +15,7 @@ export default {
       
     }
   },
-  props:['imgPath','title','isVoid','bgcolor'],
+  props:['imgPath','title','isVoid'],
   created() {
     
   },
@@ -42,22 +40,11 @@ export default {
   // margin 0 34rpx
   background rgba(244,245,248,1)
   border-radius 6rpx
-  .img-box{
-    display flex
-    justify-content center
-    align-items center
+  img{
     width 90rpx
     height 88rpx
     margin-bottom 16rpx
-    // background-color #159
-    border-radius 50% 
-    img{
-      
-      width 50rpx
-      height 50rpx
-    }
   }
-  
 }
 .voidBox{
   background-color rgba(0,0,0,0)

@@ -3,6 +3,38 @@ import complateF2 from "./complateF2";
 const F2 = complateF2()
 
 export default function lineChart(canvas, width, height, data, config) {
+    // data = [
+    //     {
+    //         value: 10,
+    //         time: "1",
+    //         type: "案发数"
+    //     },
+    //     {
+    //         value: 5,
+    //         time: "2",
+    //         type: "案发数"
+    //     },
+    //     {
+    //         value: 30,
+    //         time: "3",
+    //         type: "案发数"
+    //     },
+    //     {
+    //         value: 10,
+    //         time: "1",
+    //         type: "已处理"
+    //     },
+    //     {
+    //         value: 3,
+    //         time: "2",
+    //         type: "已处理"
+    //     },
+    //     {
+    //         value: 30,
+    //         time: "3",
+    //         type: "已处理"
+    //     }
+    // ];
     let xAxis = config && config.xAxis ? config.xAxis : 'time';
     let yAxis = config && config.yAxis ? config.yAxis : 'value';
     let flag = config && config.flag ? config.flag : null;

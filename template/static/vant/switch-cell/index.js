@@ -2,7 +2,6 @@ import { VantComponent } from '../common/component';
 VantComponent({
   field: true,
   props: {
-    value: null,
     title: String,
     border: Boolean,
     checked: Boolean,
@@ -13,14 +12,6 @@ VantComponent({
     size: {
       type: String,
       value: '24px'
-    },
-    activeValue: {
-      type: null,
-      value: true
-    },
-    inactiveValue: {
-      type: null,
-      value: false
     }
   },
   watch: {

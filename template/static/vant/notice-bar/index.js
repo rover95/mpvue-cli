@@ -46,7 +46,13 @@ VantComponent({
   },
   data: {
     show: true,
-    hasRightIcon: false
+    hasRightIcon: false,
+    width: undefined,
+    wrapWidth: undefined,
+    elapse: undefined,
+    animation: null,
+    resetAnimation: null,
+    timer: null
   },
   watch: {
     text: function text() {
@@ -59,69 +65,92 @@ VantComponent({
         hasRightIcon: true
       });
     }
-
-    this.resetAnimation = wx.createAnimation({
-      duration: 0,
-      timingFunction: 'linear'
-    });
   },
   destroyed: function destroyed() {
-    this.timer && clearTimeout(this.timer);
+    var timer = this.data.timer;
+    timer && clearTimeout(timer);
   },
   methods: {
     init: function init() {
       var _this = this;
 
-      Promise.all([this.getRect('.van-notice-bar__content'), this.getRect('.van-notice-bar__content-wrap')]).then(function (rects) {
-        var contentRect = rects[0],
-            wrapRect = rects[1];
-
-        if (contentRect == null || wrapRect == null || !contentRect.width || !wrapRect.width) {
+      this.getRect('.van-notice-bar__content').then(function (rect) {
+        if (!rect || !rect.width) {
           return;
         }
 
-        var _this$data = _this.data,
-            speed = _this$data.speed,
-            scrollable = _this$data.scrollable,
-            delay = _this$data.delay;
+        _this.set({
+          width: rect.width
+        });
 
-        if (scrollable && wrapRect.width < contentRect.width) {
-          var duration = contentRect.width / speed * 1000;
-          _this.wrapWidth = wrapRect.width;
-          _this.contentWidth = contentRect.width;
-          _this.duration = duration;
-          _this.animation = wx.createAnimation({
-            duration: duration,
-            timingFunction: 'linear',
-            delay: delay
-          });
+        _this.getRect('.van-notice-bar__content-wrap').then(function (rect) {
+          if (!rect || !rect.width) {
+            return;
+          }
 
-          _this.scroll();
-        }
+          var wrapWidth = rect.width;
+          var _this$data = _this.data,
+              width = _this$data.width,
+              speed = _this$data.speed,
+              scrollable = _this$data.scrollable,
+              delay = _this$data.delay;
+
+          if (scrollable && wrapWidth < width) {
+            var elapse = width / speed * 1000;
+            var animation = wx.createAnimation({
+              duration: elapse,
+              timeingFunction: 'linear',
+              delay: delay
+            });
+            var resetAnimation = wx.createAnimation({
+              duration: 0,
+              timeingFunction: 'linear'
+            });
+
+            _this.set({
+              elapse: elapse,
+              wrapWidth: wrapWidth,
+              animation: animation,
+              resetAnimation: resetAnimation
+            }, function () {
+              _this.scroll();
+            });
+          }
+        });
       });
     },
     scroll: function scroll() {
       var _this2 = this;
 
-      this.timer && clearTimeout(this.timer);
-      this.timer = null;
+      var _this$data2 = this.data,
+          animation = _this$data2.animation,
+          resetAnimation = _this$data2.resetAnimation,
+          wrapWidth = _this$data2.wrapWidth,
+          elapse = _this$data2.elapse,
+          speed = _this$data2.speed;
+      resetAnimation.translateX(wrapWidth).step();
+      var animationData = animation.translateX(-(elapse * speed) / 1000).step();
       this.set({
-        animationData: this.resetAnimation.translateX(this.wrapWidth).step().export()
+        animationData: resetAnimation.export()
       });
       setTimeout(function () {
         _this2.set({
-          animationData: _this2.animation.translateX(-_this2.contentWidth).step().export()
+          animationData: animationData.export()
         });
-      }, 20);
-      this.timer = setTimeout(function () {
+      }, 100);
+      var timer = setTimeout(function () {
         _this2.scroll();
-      }, this.duration);
+      }, elapse);
+      this.set({
+        timer: timer
+      });
     },
     onClickIcon: function onClickIcon() {
-      this.timer && clearTimeout(this.timer);
-      this.timer = null;
+      var timer = this.data.timer;
+      timer && clearTimeout(timer);
       this.set({
-        show: false
+        show: false,
+        timer: null
       });
     },
     onClick: function onClick(event) {

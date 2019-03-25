@@ -120,13 +120,13 @@ export default {
   },
   methods: {
     initForm(data){
-      // console.log(data);
+      console.log(data);
       
       let pickerItems = data.filter(val=>val.type =='enum')
       let formValue = {...this.formValue}   //深拷贝修改状态后，再赋值回去，如果this.pickerValue直接增加新属性，视图不更新
       this.formRows = data
       pickerItems.map(val=>{
-        // console.log(val); 
+        console.log(val); 
         let item = {
           ...val,
           show:false
@@ -193,7 +193,7 @@ export default {
       }
     },
     showPicker(e){
-      // console.log(e);
+      console.log(e);
       this.hasPickerShow= true;
       if(this.onPickerShow){
         this.onPickerShow(true)

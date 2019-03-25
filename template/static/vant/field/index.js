@@ -74,7 +74,9 @@ VantComponent({
         value: value,
         showClear: this.getShowClear(value)
       }, function () {
-        _this.emitChange(value);
+        _this.$emit('input', value);
+
+        _this.$emit('change', value);
       });
     },
     onFocus: function onFocus(event) {
@@ -89,14 +91,11 @@ VantComponent({
         height: height
       });
       this.focused = true;
-      this.blurFromClear = false;
       this.set({
         showClear: this.getShowClear()
       });
     },
     onBlur: function onBlur(event) {
-      var _this2 = this;
-
       var _ref3 = event.detail || {},
           _ref3$value = _ref3.value,
           value = _ref3$value === void 0 ? '' : _ref3$value,
@@ -108,21 +107,9 @@ VantComponent({
         cursor: cursor
       });
       this.focused = false;
-      var showClear = this.getShowClear();
-
-      if (this.data.value === value) {
-        this.set({
-          showClear: showClear
-        });
-      } else if (!this.blurFromClear) {
-        // fix: the handwritten keyboard does not trigger input change
-        this.set({
-          value: value,
-          showClear: showClear
-        }, function () {
-          _this2.emitChange(value);
-        });
-      }
+      this.set({
+        showClear: this.getShowClear()
+      });
     },
     onClickIcon: function onClickIcon() {
       this.$emit('click-icon');
@@ -132,24 +119,21 @@ VantComponent({
       return this.data.clearable && this.focused && value && !this.data.readonly;
     },
     onClear: function onClear() {
-      var _this3 = this;
+      var _this2 = this;
 
-      this.blurFromClear = true;
       this.set({
         value: '',
         showClear: this.getShowClear('')
       }, function () {
-        _this3.emitChange('');
+        _this2.$emit('input', '');
 
-        _this3.$emit('clear', '');
+        _this2.$emit('change', '');
+
+        _this2.$emit('clear', '');
       });
     },
     onConfirm: function onConfirm() {
       this.$emit('confirm', this.data.value);
-    },
-    emitChange: function emitChange(value) {
-      this.$emit('input', value);
-      this.$emit('change', value);
     }
   }
 });

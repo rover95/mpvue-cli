@@ -55,9 +55,6 @@ flex-text：按钮文本居中
   -ms-flex: 1;
   flex: 1;
 }
-.flex-grow{
-  flex-grow: 1;
-}
 
 .flex-align-center {
   -webkit-box-align: center;
